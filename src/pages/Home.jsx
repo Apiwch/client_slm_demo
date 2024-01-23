@@ -27,7 +27,7 @@ function Home() {
   useEffect(() => {
     // Fetch data from the protected route using the stored token
     const token = localStorage.getItem('token');
-    axios.get('http://localhost:5000/api/home', { headers: { Authorization: token } })
+    axios.get('http://192.168.1.44:5000/api/home', { headers: { Authorization: token } })
       .then((response) => {
         setLoginMessage(response.data.loginMessage);
       })
@@ -44,7 +44,7 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/Devices/${username}`)
+    axios.get(`http://192.168.1.44:5000/api/Devices/${username}`)
       .then(response => {
         setDevices(response.data);
       })
@@ -55,7 +55,7 @@ function Home() {
 
 
   useEffect(() => {
-    const socket = new WebSocket('ws://localhost:5000');
+    const socket = new WebSocket('ws://192.168.1.44:5000');
 
     socket.onopen = () => {
 
