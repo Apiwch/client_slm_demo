@@ -30,7 +30,7 @@ function DevicesManager() {
     useEffect(() => {
         // Fetch data from the protected route using the stored token
         const token = localStorage.getItem('token');
-        axios.get('http://localhost:5000/api/home', { headers: { Authorization: token } })
+        axios.get('http://192.168.1.44:5000/api/home', { headers: { Authorization: token } })
           .then((response) => {
             setLoginMessage(response.data.loginMessage);
           })
@@ -48,7 +48,7 @@ function DevicesManager() {
     
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/api/Devices/${username}`)
+        axios.get(`http://192.168.1.44:5000/api/Devices/${username}`)
             .then(response => {
                 setData(response.data);
             })
@@ -93,7 +93,7 @@ function DevicesManager() {
                 text: "Please Seclect Location!",
             });
         } else {
-            axios.post('http://localhost:5000/api/newDevice', { newDeviceName, newDeviceSerial, lat, lon, username })
+            axios.post('http://192.168.1.44:5000/api/newDevice', { newDeviceName, newDeviceSerial, lat, lon, username })
                 .then((response) => {
                     setAddMessage(response.data);
                     setShow(false);
@@ -126,7 +126,7 @@ function DevicesManager() {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/api/deleteDevice/${id}`)
+                axios.delete(`http://192.168.1.44:5000/api/deleteDevice/${id}`)
                     .then((response) => {
                         setAddMessage(response.data);
                         Swal.fire({
@@ -144,7 +144,7 @@ function DevicesManager() {
     }
 
     const HandleUpdateDevice = () =>{
-        axios.put(`http://localhost:5000/api/updateDevice/${id}`, { newDeviceName, newDeviceSerial, lat, lon, username })
+        axios.put(`http://192.168.1.44:5000/api/updateDevice/${id}`, { newDeviceName, newDeviceSerial, lat, lon, username })
                 .then((response) => {
                     setAddMessage(response.data);
                     setShow(false);
